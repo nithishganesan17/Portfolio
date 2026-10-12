@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Madhav Gediya | Interactive Digital Art Portfolio</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500&family=Outfit:wght@800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500&family=Outfit:wght@800;900&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
             --bg-color: #ffffff;
             --text-color: #111111;
-            --accent-color: #ff2d20; /* Laravel Red */
+            --accent-color: #ff2d20;
+            /* Laravel Red */
             --accent-glow: rgba(255, 45, 32, 0.15);
             --font-display: 'Outfit', sans-serif;
             --font-body: 'Inter', sans-serif;
@@ -27,21 +31,34 @@
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: var(--font-body);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            cursor: none; /* Hide default cursor for custom cursor experience */
+            cursor: none;
+            /* Hide default cursor for custom cursor experience */
         }
 
         /* Lenis smooth scrolling reset */
-        html.lenis { height: auto; }
-        .lenis.lenis-smooth { scroll-behavior: auto !important; }
-        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-        .lenis.lenis-stopped { overflow: hidden; }
+        html.lenis {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
 
         /* Custom Cursor */
         .custom-cursor {
@@ -53,6 +70,7 @@
             pointer-events: none;
             z-index: 9999;
         }
+
         .cursor-dot {
             position: absolute;
             width: 6px;
@@ -63,6 +81,7 @@
             pointer-events: none;
             box-shadow: 0 0 10px var(--accent-color);
         }
+
         .cursor-ring {
             position: absolute;
             width: 30px;
@@ -73,7 +92,9 @@
             pointer-events: none;
             box-shadow: inset 0 0 5px rgba(255, 45, 32, 0.05);
         }
-        .char, .word {
+
+        .char,
+        .word {
             display: inline-block;
         }
 
@@ -90,6 +111,7 @@
             z-index: 100;
             pointer-events: auto;
         }
+
         .nav-status {
             display: flex;
             align-items: center;
@@ -104,6 +126,7 @@
             border-radius: 50px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
         }
+
         .status-dot {
             width: 8px;
             height: 8px;
@@ -112,16 +135,30 @@
             box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
             animation: pulse 2s infinite;
         }
+
         @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 0.6; }
-            50% { transform: scale(1.15); opacity: 1; }
-            100% { transform: scale(0.9); opacity: 0.6; }
+            0% {
+                transform: scale(0.9);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0.9);
+                opacity: 0.6;
+            }
         }
+
         .nav-links {
             display: flex;
             gap: 2.5rem;
             list-style: none;
         }
+
         .nav-links a {
             color: var(--text-color);
             text-decoration: none;
@@ -133,6 +170,7 @@
             display: flex;
             align-items: center;
         }
+
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -143,10 +181,12 @@
             background-color: var(--text-color);
             transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), left 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
+
         .nav-links a:hover::after {
             width: 100%;
             left: 0;
         }
+
         .nav-cta {
             font-family: var(--font-body);
             font-weight: 500;
@@ -161,6 +201,7 @@
             align-items: center;
             gap: 4px;
         }
+
         .nav-cta:hover {
             background-color: var(--accent-color);
             color: #ffffff;
@@ -186,7 +227,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 2; /* Sits on top of background & typography */
+            z-index: 2;
+            /* Sits on top of background & typography */
             pointer-events: none;
         }
 
@@ -216,30 +258,35 @@
             font-weight: 900;
             text-transform: uppercase;
             white-space: nowrap;
-            z-index: 1; /* Layer 2: Sandwiched! */
+            z-index: 1;
+            /* Layer 2: Sandwiched! */
             pointer-events: none;
             user-select: none;
             gap: 2.5rem;
             letter-spacing: -0.04em;
         }
+
         .hero-name-heading .fill {
             color: var(--text-color);
             pointer-events: auto;
         }
+
         .hero-name-heading .outline {
             color: #e0e0e0;
             pointer-events: auto;
             cursor: pointer;
         }
+
         .hero-name-heading .outline .char {
             color: #e0e0e0;
             -webkit-text-stroke: none;
-            transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                        -webkit-text-stroke 0.4s ease, 
-                        transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-                        -webkit-text-fill-color 0.4s ease;
+            transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                -webkit-text-stroke 0.4s ease,
+                transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                -webkit-text-fill-color 0.4s ease;
             display: inline-block;
         }
+
         .hero-name-heading .outline:hover .char {
             background: linear-gradient(135deg, #ff2d20 0%, #ff6b4a 100%);
             -webkit-background-clip: text;
@@ -248,12 +295,30 @@
             -webkit-text-stroke: 1.5px transparent;
             transform: translateY(-8px) scale(1.03);
         }
-        .hero-name-heading .outline .char:nth-child(1) { transition-delay: 0.0s; }
-        .hero-name-heading .outline .char:nth-child(2) { transition-delay: 0.03s; }
-        .hero-name-heading .outline .char:nth-child(3) { transition-delay: 0.06s; }
-        .hero-name-heading .outline .char:nth-child(4) { transition-delay: 0.09s; }
-        .hero-name-heading .outline .char:nth-child(5) { transition-delay: 0.12s; }
-        .hero-name-heading .outline .char:nth-child(6) { transition-delay: 0.15s; }
+
+        .hero-name-heading .outline .char:nth-child(1) {
+            transition-delay: 0.0s;
+        }
+
+        .hero-name-heading .outline .char:nth-child(2) {
+            transition-delay: 0.03s;
+        }
+
+        .hero-name-heading .outline .char:nth-child(3) {
+            transition-delay: 0.06s;
+        }
+
+        .hero-name-heading .outline .char:nth-child(4) {
+            transition-delay: 0.09s;
+        }
+
+        .hero-name-heading .outline .char:nth-child(5) {
+            transition-delay: 0.12s;
+        }
+
+        .hero-name-heading .outline .char:nth-child(6) {
+            transition-delay: 0.15s;
+        }
 
         /* Hero Info Card */
         .hero-info-card {
@@ -264,6 +329,7 @@
             z-index: 5;
             text-align: left;
         }
+
         .hero-info-card h2 {
             font-family: var(--font-body);
             font-size: clamp(1.8rem, 2.2vw, 2.2rem);
@@ -272,6 +338,7 @@
             margin-bottom: 0.6rem;
             letter-spacing: -0.02em;
         }
+
         .hero-info-card p {
             font-family: var(--font-body);
             font-size: 0.95rem;
@@ -279,6 +346,7 @@
             color: #555;
             margin-bottom: 1.6rem;
         }
+
         .btn-collaborate {
             display: inline-block;
             background-color: #111111;
@@ -291,6 +359,7 @@
             font-size: 0.85rem;
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s, box-shadow 0.3s;
         }
+
         .btn-collaborate:hover {
             background-color: var(--accent-color);
             color: #ffffff;
@@ -308,6 +377,7 @@
             gap: 0.8rem;
             z-index: 5;
         }
+
         .social-pill {
             background: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.08);
@@ -325,6 +395,7 @@
             transition: border-color 0.3s, background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
         }
+
         .social-pill:hover {
             border-color: #111111;
             background-color: #111111;
@@ -332,6 +403,7 @@
             transform: translateX(-4px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
         }
+
         .pill-icon {
             width: 16px;
             height: 16px;
@@ -350,6 +422,7 @@
             pointer-events: none;
             z-index: 5;
         }
+
         .instruction-prompt {
             position: absolute;
             top: 15%;
@@ -365,6 +438,7 @@
             align-items: center;
             gap: 8px;
         }
+
         .instruction-prompt::before {
             content: '';
             width: 4px;
@@ -372,9 +446,17 @@
             background-color: var(--accent-color);
             border-radius: 50%;
         }
+
         @keyframes breathing {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
         }
 
         /* --- SECTIONS FROM PORTFOLIO --- */
@@ -388,6 +470,7 @@
             position: relative;
             z-index: 5;
         }
+
         .manifesto-text {
             font-size: clamp(2rem, 5.5vw, 5.5rem);
             font-family: var(--font-display);
@@ -396,6 +479,7 @@
             line-height: 1.05;
             text-transform: uppercase;
         }
+
         .manifesto-text span {
             color: rgba(0, 0, 0, 0.12);
             transition: color 0.5s ease;
@@ -411,9 +495,11 @@
             position: relative;
             z-index: 5;
         }
+
         .about-portrait-wrap {
             position: relative;
         }
+
         .about-portrait {
             position: sticky;
             top: 15vh;
@@ -422,11 +508,13 @@
             object-fit: cover;
             border-radius: 12px;
             filter: grayscale(100%) contrast(1.1);
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
+
         .about-content {
             padding-top: 10vh;
         }
+
         .about-statement {
             font-size: clamp(1.8rem, 3.5vw, 3.5rem);
             font-family: var(--font-display);
@@ -434,10 +522,12 @@
             line-height: 1.1;
             text-transform: uppercase;
         }
+
         .about-statement em {
             color: var(--accent-color);
             font-style: normal;
         }
+
         .about-body {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -456,6 +546,7 @@
             z-index: 5;
             padding: 10rem 0;
         }
+
         .project-panel {
             height: 100vh;
             display: flex;
@@ -465,10 +556,12 @@
             top: 0;
             background: var(--bg-color);
         }
+
         .project-content {
             flex: 1;
             padding-right: 8vw;
         }
+
         .project-meta {
             font-family: var(--font-mono);
             color: var(--accent-color);
@@ -477,6 +570,7 @@
             letter-spacing: 0.15em;
             font-size: 0.9rem;
         }
+
         .project-title {
             font-family: var(--font-display);
             font-size: clamp(2.5rem, 5vw, 5.5rem);
@@ -484,12 +578,14 @@
             margin-bottom: 2rem;
             text-transform: uppercase;
         }
+
         .project-desc {
             font-size: 1.05rem;
             color: #777;
             line-height: 1.7;
             max-width: 85%;
         }
+
         .project-mockup {
             flex: 1.2;
             height: 65vh;
@@ -497,9 +593,10 @@
             border-radius: 16px;
             overflow: hidden;
             position: relative;
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
         }
+
         .project-mockup img {
             width: 100%;
             height: 100%;
@@ -507,6 +604,7 @@
             opacity: 0.7;
             transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s;
         }
+
         .project-panel:hover .project-mockup img {
             transform: scale(1.05);
             opacity: 0.95;
@@ -519,6 +617,7 @@
             position: relative;
             z-index: 5;
         }
+
         .flow-title {
             font-family: var(--font-display);
             font-size: clamp(2.5rem, 4vw, 4.5rem);
@@ -526,14 +625,16 @@
             text-align: center;
             text-transform: uppercase;
         }
+
         .flow-diagram {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
+
         .flow-node {
             padding: 1.8rem 3.5rem;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             font-family: var(--font-mono);
             font-size: 1.1rem;
             background: #fff;
@@ -544,15 +645,17 @@
             width: clamp(280px, 40vw, 480px);
             text-align: center;
             border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
+
         .flow-line {
             width: 1px;
             height: 60px;
-            background: rgba(0,0,0,0.08);
+            background: rgba(0, 0, 0, 0.08);
             position: relative;
             overflow: hidden;
         }
+
         .flow-packet {
             position: absolute;
             top: 0;
@@ -562,9 +665,15 @@
             background: linear-gradient(to bottom, transparent, var(--accent-color), transparent);
             animation: flowAnim 1.5s infinite linear;
         }
+
         @keyframes flowAnim {
-            0% { transform: translateY(-20px); }
-            100% { transform: translateY(60px); }
+            0% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(60px);
+            }
         }
 
         /* --- NUMBERS --- */
@@ -577,9 +686,15 @@
             text-align: center;
             position: relative;
             z-index: 5;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
-        .num-block { display: flex; flex-direction: column; align-items: center; }
+
+        .num-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .num-val {
             font-family: var(--font-display);
             font-size: clamp(3.5rem, 8vw, 9rem);
@@ -587,6 +702,7 @@
             font-weight: 800;
             color: var(--text-color);
         }
+
         .num-label {
             font-family: var(--font-mono);
             color: var(--accent-color);
@@ -609,6 +725,7 @@
             z-index: 5;
             overflow: hidden;
         }
+
         .final-title {
             font-family: var(--font-display);
             font-size: clamp(2.5rem, 8vw, 8rem);
@@ -617,6 +734,7 @@
             text-transform: uppercase;
             font-weight: 800;
         }
+
         .final-contact {
             font-family: var(--font-mono);
             display: flex;
@@ -625,12 +743,14 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         .final-contact a {
             color: var(--text-color);
             text-decoration: none;
             position: relative;
             padding-bottom: 5px;
         }
+
         .final-contact a::after {
             content: '';
             position: absolute;
@@ -641,8 +761,11 @@
             background: var(--accent-color);
             transition: width 0.3s ease;
         }
-        .final-contact a:hover::after { width: 100%; }
-        
+
+        .final-contact a:hover::after {
+            width: 100%;
+        }
+
         .final-bg-glow {
             position: absolute;
             top: 50%;
@@ -650,26 +773,72 @@
             transform: translate(-50%, -50%);
             width: 60vw;
             height: 60vw;
-            background: radial-gradient(circle, rgba(255,45,32,0.08) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(255, 45, 32, 0.08) 0%, transparent 60%);
             z-index: -1;
             pointer-events: none;
         }
 
         /* Responsive styling */
         @media (max-width: 1024px) {
-            .about-sec { grid-template-columns: 1fr; gap: 4rem; }
-            .about-portrait { position: relative; top: 0; width: 80%; margin: 0 auto; display: block;}
-            .project-panel { flex-direction: column; height: auto; padding: 8rem 8vw; gap: 4rem; position: relative; }
-            .project-mockup { height: 45vh; width: 100%; }
-            .numbers-sec { grid-template-columns: repeat(2, 1fr); gap: 6rem; }
+            .about-sec {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .about-portrait {
+                position: relative;
+                top: 0;
+                width: 80%;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .project-panel {
+                flex-direction: column;
+                height: auto;
+                padding: 8rem 8vw;
+                gap: 4rem;
+                position: relative;
+            }
+
+            .project-mockup {
+                height: 45vh;
+                width: 100%;
+            }
+
+            .numbers-sec {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6rem;
+            }
         }
+
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-desc { display: none; }
-            .hero-socials { display: none; }
-            .numbers-sec { grid-template-columns: 1fr; gap: 4rem; }
-            .final-contact { flex-direction: column; gap: 2rem; }
-            .tech-icon { padding: 0.6rem 1.2rem; font-size: 0.75rem; }
+            .nav-links {
+                display: none;
+            }
+
+            .hero-desc {
+                display: none;
+            }
+
+            .hero-socials {
+                display: none;
+            }
+
+            .numbers-sec {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .final-contact {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .tech-icon {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.75rem;
+            }
         }
 
         /* Reduce Motion */
@@ -683,6 +852,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Custom Cursor -->
@@ -708,13 +878,13 @@
 
     <!-- MAIN PAGE WRAPPER (For Lenis Scroll) -->
     <div class="main-wrapper">
-        
+
         <!-- HERO CHAPTER: CINEMATIC DIGITAL EXPERIENCE -->
         <section class="hero-section">
-            
+
             <!-- WebGL Canvas for Interactive Dual-Portrait Reveal & Fluid Ripple -->
             <canvas id="webgl-canvas"></canvas>
-            
+
             <!-- Canvas specifically for Background Atmosphere & Fog Shaders -->
             <canvas id="bg-canvas"></canvas>
 
@@ -734,19 +904,38 @@
             <!-- Right Social Pills (exactly matching styling and placement) -->
             <div class="hero-social-pills">
                 <a href="#" class="social-pill hover-target">
-                    <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.49-11.05 1-11.6 8.56"/></svg>
+                    <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path
+                            d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.49-11.05 1-11.6 8.56" />
+                    </svg>
                     Dribbble
                 </a>
                 <a href="#" class="social-pill hover-target">
-                    <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
                     Instagram
                 </a>
                 <a href="#" class="social-pill hover-target">
-                    <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                        <rect x="2" y="9" width="4" height="12" />
+                        <circle cx="4" cy="4" r="2" />
+                    </svg>
                     LinkedIn
                 </a>
                 <a href="#" class="social-pill hover-target">
-                    <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 10h1a3 3 0 1 1 0 6H9v-6zm0-4h1a2.5 2.5 0 1 1 0 5H9V6zm12 5h-7a4 4 0 0 0-4 4 4 4 0 0 0 4 4h7v-2h-7a2 2 0 0 1-2-2 2 2 0 0 1 2-2h7v-2zM15 8h5v1.5h-5z"/></svg>
+                    <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M9 10h1a3 3 0 1 1 0 6H9v-6zm0-4h1a2.5 2.5 0 1 1 0 5H9V6zm12 5h-7a4 4 0 0 0-4 4 4 4 0 0 0 4 4h7v-2h-7a2 2 0 0 1-2-2 2 2 0 0 1 2-2h7v-2zM15 8h5v1.5h-5z" />
+                    </svg>
                     Behance
                 </a>
             </div>
@@ -775,12 +964,17 @@
             </div>
             <div class="about-content">
                 <h3 class="about-statement reveal-text">
-                    MY WORK EXISTS AT THE INTERSECTION OF <em>ARCHITECTURE</em>, <em>SYSTEM STABILITY</em> AND <em>VISUAL IMPACT</em>.
+                    MY WORK EXISTS AT THE INTERSECTION OF <em>ARCHITECTURE</em>, <em>SYSTEM STABILITY</em> AND
+                    <em>VISUAL IMPACT</em>.
                 </h3>
                 <div class="about-body">
-                    <p>Designing and constructing modern enterprise applications is a craft of balance. A fast backend is meaningless without a clean, functional interface, and visual beauty fails without resilient architectural bones.</p>
-                    <p>I specialize in building complex applications within the Laravel ecosystem, coupling them with advanced APIs and highly responsive client applications in React, Vue, and Flutter.</p>
-                    <p>From microservices and custom database optimization to real-time WebSockets and automated deployment pipelines, my goal is always absolute performance.</p>
+                    <p>Designing and constructing modern enterprise applications is a craft of balance. A fast backend
+                        is meaningless without a clean, functional interface, and visual beauty fails without resilient
+                        architectural bones.</p>
+                    <p>I specialize in building complex applications within the Laravel ecosystem, coupling them with
+                        advanced APIs and highly responsive client applications in React, Vue, and Flutter.</p>
+                    <p>From microservices and custom database optimization to real-time WebSockets and automated
+                        deployment pipelines, my goal is always absolute performance.</p>
                 </div>
             </div>
         </section>
@@ -791,21 +985,27 @@
                 <div class="project-content">
                     <div class="project-meta">Enterprise Logistics SaaS</div>
                     <h2 class="project-title reveal-text">NEXUS<br>LOGISTICS</h2>
-                    <p class="project-desc">A comprehensive dashboard engineered to track fleets in real-time, process high-frequency geo-coordinate updates, and coordinate multi-tenant warehouses. Powered by Laravel, Vue 3, Redis, and WebSockets.</p>
+                    <p class="project-desc">A comprehensive dashboard engineered to track fleets in real-time, process
+                        high-frequency geo-coordinate updates, and coordinate multi-tenant warehouses. Powered by
+                        Laravel, Vue 3, Redis, and WebSockets.</p>
                 </div>
                 <div class="project-mockup">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Nexus Logistics Project">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
+                        alt="Nexus Logistics Project">
                 </div>
             </div>
-            
+
             <div class="project-panel">
                 <div class="project-content">
                     <div class="project-meta">Fintech Core Infrastructure</div>
                     <h2 class="project-title reveal-text">AETHER<br>FINANCIAL</h2>
-                    <p class="project-desc">High-performance double-entry API engine capable of processing secure, transactional banking operations under extreme loads. Written in PHP 8.2, featuring Dockerized microservices and complex database indexing.</p>
+                    <p class="project-desc">High-performance double-entry API engine capable of processing secure,
+                        transactional banking operations under extreme loads. Written in PHP 8.2, featuring Dockerized
+                        microservices and complex database indexing.</p>
                 </div>
                 <div class="project-mockup">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="Aether Financial Project">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
+                        alt="Aether Financial Project">
                 </div>
             </div>
 
@@ -813,10 +1013,13 @@
                 <div class="project-content">
                     <div class="project-meta">Cross-Platform Ecosystem</div>
                     <h2 class="project-title reveal-text">OMNI<br>CONNECT</h2>
-                    <p class="project-desc">A hybrid consumer mobile ecosystem featuring offline-first state synchronization, instant messaging, and granular user settings. Built with Flutter, backed by a scale-ready Laravel REST API with AWS integration.</p>
+                    <p class="project-desc">A hybrid consumer mobile ecosystem featuring offline-first state
+                        synchronization, instant messaging, and granular user settings. Built with Flutter, backed by a
+                        scale-ready Laravel REST API with AWS integration.</p>
                 </div>
                 <div class="project-mockup">
-                    <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=2070&auto=format&fit=crop" alt="Omni Connect Project">
+                    <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=2070&auto=format&fit=crop"
+                        alt="Omni Connect Project">
                 </div>
             </div>
         </section>
@@ -826,15 +1029,26 @@
             <h2 class="flow-title reveal-text">High-Scale Architecture</h2>
             <div class="flow-diagram">
                 <div class="flow-node">Client Interface (Vue.js / Flutter)</div>
-                <div class="flow-line"><div class="flow-packet"></div></div>
+                <div class="flow-line">
+                    <div class="flow-packet"></div>
+                </div>
                 <div class="flow-node">API Gateway & Load Balancer</div>
-                <div class="flow-line"><div class="flow-packet"></div></div>
-                <div class="flow-node" style="color: var(--accent-color); border-color: rgba(255,45,32,0.4);">Laravel Application Cluster</div>
-                <div class="flow-line"><div class="flow-packet"></div></div>
+                <div class="flow-line">
+                    <div class="flow-packet"></div>
+                </div>
+                <div class="flow-node" style="color: var(--accent-color); border-color: rgba(255,45,32,0.4);">Laravel
+                    Application Cluster</div>
+                <div class="flow-line">
+                    <div class="flow-packet"></div>
+                </div>
                 <div class="flow-node">Database Cache (Redis)</div>
-                <div class="flow-line"><div class="flow-packet"></div></div>
+                <div class="flow-line">
+                    <div class="flow-packet"></div>
+                </div>
                 <div class="flow-node">Relational Cluster (MySQL / Aurora)</div>
-                <div class="flow-line"><div class="flow-packet"></div></div>
+                <div class="flow-line">
+                    <div class="flow-packet"></div>
+                </div>
                 <div class="flow-node">AWS Infrastructure (ECS / S3 / CloudFront)</div>
             </div>
         </section>
@@ -871,7 +1085,7 @@
                 <a href="#" class="hover-target">LinkedIn</a>
             </div>
         </section>
-        
+
     </div>
 
     <!-- Script imports -->
@@ -880,19 +1094,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<<<<<<< HEAD
     <script src="/textures.js"></script>
-=======
-    <script src="textures.js"></script>
->>>>>>> fa666d3fd4e5a7dbf6ed1775fa6252f1c79395ee
-    
     <script>
         // ----------------------------------------------------
         // 1. Setup Custom Cursor with Magnetic & Interaction Lerp
         // ----------------------------------------------------
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorRing = document.querySelector('.cursor-ring');
-        
+
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
         let ringX = mouseX;
@@ -962,15 +1171,15 @@
         // ----------------------------------------------------
         const canvas = document.getElementById('webgl-canvas');
         const bgCanvas = document.getElementById('bg-canvas');
-        
+
         // Portrait WebGL Setup (Transparency)
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
         camera.position.z = 5.0;
 
-        const renderer = new THREE.WebGLRenderer({ 
-            canvas: canvas, 
-            alpha: true, 
+        const renderer = new THREE.WebGLRenderer({
+            canvas: canvas,
+            alpha: true,
             antialias: true,
             powerPreference: "high-performance"
         });
@@ -995,7 +1204,7 @@
         // 5. Textures Loading (Grayscale & Color Portraits)
         // ----------------------------------------------------
         const textureLoader = new THREE.TextureLoader();
-        
+
         const textureA = textureLoader.load(BASE64_BW, (tex) => {
             tex.generateMipmaps = false;
             tex.minFilter = THREE.LinearFilter;
@@ -1219,11 +1428,11 @@
             const x = (Math.random() - 0.5) * 5.0;
             const y = (Math.random() - 0.5) * 3.5;
             const z = (Math.random() - 0.5) * 2.0 - 0.5; // Spread around depth Z
-            
+
             positions[i * 3] = x;
             positions[i * 3 + 1] = y;
             positions[i * 3 + 2] = z;
-            
+
             initialPartData.push({
                 x, y, z,
                 speedX: (Math.random() - 0.5) * 0.015,
@@ -1295,7 +1504,7 @@
         function resize() {
             const width = window.innerWidth;
             const height = window.innerHeight;
-            
+
             // Portrait Canvas Render sizing
             renderer.setSize(width, height);
             camera.aspect = width / height;
@@ -1304,7 +1513,7 @@
             // Background Canvas sizing
             bgRenderer.setSize(width, height);
             bgMaterial.uniforms.u_resolution.value.set(width, height);
-            
+
             // Adjust orthographic visible dimensions at z = 0
             const vFOV = camera.fov * Math.PI / 180;
             const visibleHeight = 2.0 * Math.tan(vFOV / 2.0) * camera.position.z;
@@ -1343,20 +1552,20 @@
         let uvMouse = new THREE.Vector2(-1, -1);
         let speed = 0;
         let targetSpeed = 0;
-        
+
         let meshTargetRotX = 0;
         let meshTargetRotY = 0;
 
         function animate() {
             requestAnimationFrame(animate);
-            
+
             const time = clock.getElapsedTime();
             const scrollY = window.scrollY;
 
             // Custom Cursor Dot matches mouse position instantly for sharp responsiveness
             mouseX = targetX;
             mouseY = targetY;
-            
+
             // Custom Cursor Ring follows with a smooth, premium elastic lag
             ringX += (targetX - ringX) * 0.12;
             ringY += (targetY - ringY) * 0.12;
@@ -1421,10 +1630,10 @@
                 const data = initialPartData[i];
                 // Perlin-like slow floating sine oscillation
                 const wave = Math.sin(time * data.freq + data.phase) * data.amp;
-                
+
                 pPositions[i * 3] = data.x + wave * 0.6;
                 pPositions[i * 3 + 1] = data.y + wave;
-                
+
                 // slow drift forward
                 data.z += data.speedZ;
                 if (data.z > 1.5) data.z = -2.5; // wrap particles
@@ -1532,7 +1741,7 @@
                 scrub: 1
             }
         });
-        
+
         manifestoSplit.words.forEach(word => {
             gsap.to(word, {
                 color: '#ffffff',
@@ -1546,15 +1755,15 @@
         });
 
         // About section slide trigger
-        gsap.fromTo('.about-portrait', 
+        gsap.fromTo('.about-portrait',
             { scale: 1.15 },
-            { 
-                scale: 1, 
-                scrollTrigger: { 
-                    trigger: ".about-sec", 
-                    start: "top bottom", 
-                    end: "top top", 
-                    scrub: true 
+            {
+                scale: 1,
+                scrollTrigger: {
+                    trigger: ".about-sec",
+                    start: "top bottom",
+                    end: "top top",
+                    scrub: true
                 }
             }
         );
@@ -1568,18 +1777,18 @@
                 pin: true,
                 pinSpacing: false
             });
-            
+
             const img = panel.querySelector('.project-mockup img');
-            gsap.fromTo(img, 
+            gsap.fromTo(img,
                 { scale: 1.22, opacity: 0.5 },
-                { 
-                    scale: 1, 
+                {
+                    scale: 1,
                     opacity: 0.95,
-                    scrollTrigger: { 
-                        trigger: panel, 
-                        start: "top bottom", 
-                        end: "top top", 
-                        scrub: true 
+                    scrollTrigger: {
+                        trigger: panel,
+                        start: "top bottom",
+                        end: "top top",
+                        scrub: true
                     }
                 }
             );
@@ -1640,4 +1849,5 @@
 
     </script>
 </body>
+
 </html>
