@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madhav Gediya | Interactive Digital Art Portfolio</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500&family=Outfit:wght@800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --accent-color: #ff2d20; /* Laravel Red */
+            --accent-glow: rgba(255, 45, 32, 0.15);
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'Space Grotesk', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            cursor: none; /* Hide default cursor for custom cursor experience */
+        }
+
+        /* Lenis smooth scrolling reset */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .cursor-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        .cursor-ring {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(255, 45, 32, 0.45);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            box-shadow: inset 0 0 5px rgba(255, 45, 32, 0.05);
+        }
+        .char, .word {
+            display: inline-block;
+        }
+
+        /* --- NAVIGATION --- */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 5vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            pointer-events: auto;
+        }
+        .nav-status {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.8rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            color: #333;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: var(--font-body);
+            position: relative;
+            padding: 0.2rem 0;
+            display: flex;
+            align-items: center;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0%;
+            height: 1.5px;
+            background-color: var(--text-color);
+            transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), left 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .nav-cta {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #111111;
+            padding: 0.75rem 1.6rem;
+            border-radius: 50px;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .nav-cta:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 45, 32, 0.25);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* WebGL Background Canvas */
+        canvas#webgl-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2; /* Sits on top of background & typography */
+            pointer-events: none;
+        }
+
+        /* Canvas specifically for Background shader */
+        canvas#bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Hero Name Heading (Sandwiched behind portrait) */
+        .hero-name-heading {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 9.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            white-space: nowrap;
+            z-index: 1; /* Layer 2: Sandwiched! */
+            pointer-events: none;
+            user-select: none;
+            gap: 2.5rem;
+            letter-spacing: -0.04em;
+        }
+        .hero-name-heading .fill {
+            color: var(--text-color);
+            pointer-events: auto;
+        }
+        .hero-name-heading .outline {
+            color: #e0e0e0;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        .hero-name-heading .outline .char {
+            color: #e0e0e0;
+            -webkit-text-stroke: none;
+            transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                        -webkit-text-stroke 0.4s ease, 
+                        transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                        -webkit-text-fill-color 0.4s ease;
+            display: inline-block;
+        }
+        .hero-name-heading .outline:hover .char {
+            background: linear-gradient(135deg, #ff2d20 0%, #ff6b4a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1.5px transparent;
+            transform: translateY(-8px) scale(1.03);
+        }
+        .hero-name-heading .outline .char:nth-child(1) { transition-delay: 0.0s; }
+        .hero-name-heading .outline .char:nth-child(2) { transition-delay: 0.03s; }
+        .hero-name-heading .outline .char:nth-child(3) { transition-delay: 0.06s; }
+        .hero-name-heading .outline .char:nth-child(4) { transition-delay: 0.09s; }
+        .hero-name-heading .outline .char:nth-child(5) { transition-delay: 0.12s; }
+        .hero-name-heading .outline .char:nth-child(6) { transition-delay: 0.15s; }
+
+        /* Hero Info Card */
+        .hero-info-card {
+            position: absolute;
+            bottom: 12%;
+            left: 8%;
+            max-width: 380px;
+            z-index: 5;
+            text-align: left;
+        }
+        .hero-info-card h2 {
+            font-family: var(--font-body);
+            font-size: clamp(1.8rem, 2.2vw, 2.2rem);
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.02em;
+        }
+        .hero-info-card p {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 1.6rem;
+        }
+        .btn-collaborate {
+            display: inline-block;
+            background-color: #111111;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s, box-shadow 0.3s;
+        }
+        .btn-collaborate:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 45, 32, 0.25);
+        }
+
+        /* Hero Social Pills */
+        .hero-social-pills {
+            position: absolute;
+            bottom: 12%;
+            right: 8%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            z-index: 5;
+        }
+        .social-pill {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 0.65rem 1.4rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 145px;
+            transition: border-color 0.3s, background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }
+        .social-pill:hover {
+            border-color: #111111;
+            background-color: #111111;
+            color: #ffffff;
+            transform: translateX(-4px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        }
+        .pill-icon {
+            width: 16px;
+            height: 16px;
+            stroke-width: 1.75;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* --- INTERACTIVE DIGITAL INSTALLATION UI --- */
+        .installation-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .instruction-prompt {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0.5);
+            animation: breathing 3s infinite ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .instruction-prompt::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+        @keyframes breathing {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* --- SECTIONS FROM PORTFOLIO --- */
+        .manifesto-sec {
+            background: var(--bg-color);
+            color: var(--text-color);
+            padding: 15rem 10vw;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 5;
+        }
+        .manifesto-text {
+            font-size: clamp(2rem, 5.5vw, 5.5rem);
+            font-family: var(--font-display);
+            font-weight: 800;
+            max-width: 90vw;
+            line-height: 1.05;
+            text-transform: uppercase;
+        }
+        .manifesto-text span {
+            color: rgba(0, 0, 0, 0.12);
+            transition: color 0.5s ease;
+        }
+
+        .about-sec {
+            background: #fafafa;
+            color: var(--text-color);
+            padding: 10rem 10vw;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8vw;
+            position: relative;
+            z-index: 5;
+        }
+        .about-portrait-wrap {
+            position: relative;
+        }
+        .about-portrait {
+            position: sticky;
+            top: 15vh;
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 12px;
+            filter: grayscale(100%) contrast(1.1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .about-content {
+            padding-top: 10vh;
+        }
+        .about-statement {
+            font-size: clamp(1.8rem, 3.5vw, 3.5rem);
+            font-family: var(--font-display);
+            margin-bottom: 4rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        .about-statement em {
+            color: var(--accent-color);
+            font-style: normal;
+        }
+        .about-body {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #888;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 600px;
+        }
+
+        /* --- PROJECT GRID --- */
+        .projects-sec {
+            background: var(--bg-color);
+            color: var(--text-color);
+            position: relative;
+            z-index: 5;
+            padding: 10rem 0;
+        }
+        .project-panel {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10vw;
+            position: sticky;
+            top: 0;
+            background: var(--bg-color);
+        }
+        .project-content {
+            flex: 1;
+            padding-right: 8vw;
+        }
+        .project-meta {
+            font-family: var(--font-mono);
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.9rem;
+        }
+        .project-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 5.5rem);
+            line-height: 0.95;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+        .project-desc {
+            font-size: 1.05rem;
+            color: #777;
+            line-height: 1.7;
+            max-width: 85%;
+        }
+        .project-mockup {
+            flex: 1.2;
+            height: 65vh;
+            background: #f0f0f0;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+        }
+        .project-mockup img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s;
+        }
+        .project-panel:hover .project-mockup img {
+            transform: scale(1.05);
+            opacity: 0.95;
+        }
+
+        /* --- ARCHITECTURE --- */
+        .flow-sec {
+            background: #fafafa;
+            padding: 12rem 10vw;
+            position: relative;
+            z-index: 5;
+        }
+        .flow-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 4vw, 4.5rem);
+            margin-bottom: 6rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .flow-node {
+            padding: 1.8rem 3.5rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            background: #fff;
+            color: var(--text-color);
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: clamp(280px, 40vw, 480px);
+            text-align: center;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .flow-line {
+            width: 1px;
+            height: 60px;
+            background: rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .flow-packet {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, var(--accent-color), transparent);
+            animation: flowAnim 1.5s infinite linear;
+        }
+        @keyframes flowAnim {
+            0% { transform: translateY(-20px); }
+            100% { transform: translateY(60px); }
+        }
+
+        /* --- NUMBERS --- */
+        .numbers-sec {
+            background: var(--bg-color);
+            padding: 12rem 10vw;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4vw;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        .num-block { display: flex; flex-direction: column; align-items: center; }
+        .num-val {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 9rem);
+            line-height: 1;
+            font-weight: 800;
+            color: var(--text-color);
+        }
+        .num-label {
+            font-family: var(--font-mono);
+            color: var(--accent-color);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        /* --- CONTACT CTA --- */
+        .final-sec {
+            height: 100vh;
+            background: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+            overflow: hidden;
+        }
+        .final-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 8vw, 8rem);
+            line-height: 0.9;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+        .final-contact {
+            font-family: var(--font-mono);
+            display: flex;
+            gap: 4rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .final-contact a {
+            color: var(--text-color);
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        .final-contact a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        .final-contact a:hover::after { width: 100%; }
+        
+        .final-bg-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(255,45,32,0.08) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 1024px) {
+            .about-sec { grid-template-columns: 1fr; gap: 4rem; }
+            .about-portrait { position: relative; top: 0; width: 80%; margin: 0 auto; display: block;}
+            .project-panel { flex-direction: column; height: auto; padding: 8rem 8vw; gap: 4rem; position: relative; }
+            .project-mockup { height: 45vh; width: 100%; }
+            .numbers-sec { grid-template-columns: repeat(2, 1fr); gap: 6rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-desc { display: none; }
+            .hero-socials { display: none; }
+            .numbers-sec { grid-template-columns: 1fr; gap: 4rem; }
+            .final-contact { flex-direction: column; gap: 2rem; }
+            .tech-icon { padding: 0.6rem 1.2rem; font-size: 0.75rem; }
+        }
+
+        /* Reduce Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="nav-container">
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            <span>Available for New Project</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#projects" class="hover-target">Work <span class="nav-count">[40]</span></a></li>
+            <li><a href="#about" class="hover-target">Service <span class="nav-count">[4]</span></a></li>
+            <li><a href="#architecture" class="hover-target">Experience <span class="nav-count">[9y+]</span></a></li>
+            <li><a href="#contact" class="hover-target">Contact</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta hover-target">Let's Talk ↗</a>
+    </header>
+
+    <!-- MAIN PAGE WRAPPER (For Lenis Scroll) -->
+    <div class="main-wrapper">
+        
+        <!-- HERO CHAPTER: CINEMATIC DIGITAL EXPERIENCE -->
+        <section class="hero-section">
+            
+            <!-- WebGL Canvas for Interactive Dual-Portrait Reveal & Fluid Ripple -->
+            <canvas id="webgl-canvas"></canvas>
+            
+            <!-- Canvas specifically for Background Atmosphere & Fog Shaders -->
+            <canvas id="bg-canvas"></canvas>
+
+            <!-- Sandwiched Display Typography (Outline + Solid like in reference image) -->
+            <h1 class="hero-name-heading">
+                <span class="outline">MADHAV</span>
+                <span class="fill">GEDIYA</span>
+            </h1>
+
+            <!-- Left Info Panel (exactly matching styling and placement) -->
+            <div class="hero-info-card">
+                <h2>Full Stack Developer</h2>
+                <p>Engineering digital systems that are fast, scalable, and performance focused.</p>
+                <a href="#contact" class="btn-collaborate hover-target">Let's collaborate ↗</a>
+            </div>
+
+            <!-- Right Social Pills (exactly matching styling and placement) -->
+            <div class="hero-social-pills">
+                <a href="#" class="social-pill hover-target">
+                    <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.49-11.05 1-11.6 8.56"/></svg>
+                    Dribbble
+                </a>
+                <a href="#" class="social-pill hover-target">
+                    <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    Instagram
+                </a>
+                <a href="#" class="social-pill hover-target">
+                    <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    LinkedIn
+                </a>
+                <a href="#" class="social-pill hover-target">
+                    <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 10h1a3 3 0 1 1 0 6H9v-6zm0-4h1a2.5 2.5 0 1 1 0 5H9V6zm12 5h-7a4 4 0 0 0-4 4 4 4 0 0 0 4 4h7v-2h-7a2 2 0 0 1-2-2 2 2 0 0 1 2-2h7v-2zM15 8h5v1.5h-5z"/></svg>
+                    Behance
+                </a>
+            </div>
+
+            <!-- Instruction Prompt -->
+            <div class="installation-overlay">
+                <div class="instruction-prompt">Hover on eyes to reveal color</div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 02: MANIFESTO -->
+        <section class="manifesto-sec">
+            <h2 class="manifesto-text reveal-text">
+                I DON'T JUST BUILD APPLICATIONS.<br>
+                I ENGINEER DIGITAL INFRASTRUCTURE.<br>
+                WHERE HIGH-PERFORMANCE LOGIC<br>
+                MEETS ELEGANT INTERFACES.
+            </h2>
+        </section>
+
+        <!-- CHAPTER 03: ABOUT -->
+        <section class="about-sec" id="about">
+            <div class="about-portrait-wrap">
+                <!-- Using local grayscale portrait for editorial aesthetic -->
+                <img src="bw.png" class="about-portrait" alt="Editorial Portrait">
+            </div>
+            <div class="about-content">
+                <h3 class="about-statement reveal-text">
+                    MY WORK EXISTS AT THE INTERSECTION OF <em>ARCHITECTURE</em>, <em>SYSTEM STABILITY</em> AND <em>VISUAL IMPACT</em>.
+                </h3>
+                <div class="about-body">
+                    <p>Designing and constructing modern enterprise applications is a craft of balance. A fast backend is meaningless without a clean, functional interface, and visual beauty fails without resilient architectural bones.</p>
+                    <p>I specialize in building complex applications within the Laravel ecosystem, coupling them with advanced APIs and highly responsive client applications in React, Vue, and Flutter.</p>
+                    <p>From microservices and custom database optimization to real-time WebSockets and automated deployment pipelines, my goal is always absolute performance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 04: PROJECTS -->
+        <section class="projects-sec" id="projects">
+            <div class="project-panel">
+                <div class="project-content">
+                    <div class="project-meta">Enterprise Logistics SaaS</div>
+                    <h2 class="project-title reveal-text">NEXUS<br>LOGISTICS</h2>
+                    <p class="project-desc">A comprehensive dashboard engineered to track fleets in real-time, process high-frequency geo-coordinate updates, and coordinate multi-tenant warehouses. Powered by Laravel, Vue 3, Redis, and WebSockets.</p>
+                </div>
+                <div class="project-mockup">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Nexus Logistics Project">
+                </div>
+            </div>
+            
+            <div class="project-panel">
+                <div class="project-content">
+                    <div class="project-meta">Fintech Core Infrastructure</div>
+                    <h2 class="project-title reveal-text">AETHER<br>FINANCIAL</h2>
+                    <p class="project-desc">High-performance double-entry API engine capable of processing secure, transactional banking operations under extreme loads. Written in PHP 8.2, featuring Dockerized microservices and complex database indexing.</p>
+                </div>
+                <div class="project-mockup">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="Aether Financial Project">
+                </div>
+            </div>
+
+            <div class="project-panel">
+                <div class="project-content">
+                    <div class="project-meta">Cross-Platform Ecosystem</div>
+                    <h2 class="project-title reveal-text">OMNI<br>CONNECT</h2>
+                    <p class="project-desc">A hybrid consumer mobile ecosystem featuring offline-first state synchronization, instant messaging, and granular user settings. Built with Flutter, backed by a scale-ready Laravel REST API with AWS integration.</p>
+                </div>
+                <div class="project-mockup">
+                    <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=2070&auto=format&fit=crop" alt="Omni Connect Project">
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 05: SYSTEM FLOW -->
+        <section class="flow-sec" id="architecture">
+            <h2 class="flow-title reveal-text">High-Scale Architecture</h2>
+            <div class="flow-diagram">
+                <div class="flow-node">Client Interface (Vue.js / Flutter)</div>
+                <div class="flow-line"><div class="flow-packet"></div></div>
+                <div class="flow-node">API Gateway & Load Balancer</div>
+                <div class="flow-line"><div class="flow-packet"></div></div>
+                <div class="flow-node" style="color: var(--accent-color); border-color: rgba(255,45,32,0.4);">Laravel Application Cluster</div>
+                <div class="flow-line"><div class="flow-packet"></div></div>
+                <div class="flow-node">Database Cache (Redis)</div>
+                <div class="flow-line"><div class="flow-packet"></div></div>
+                <div class="flow-node">Relational Cluster (MySQL / Aurora)</div>
+                <div class="flow-line"><div class="flow-packet"></div></div>
+                <div class="flow-node">AWS Infrastructure (ECS / S3 / CloudFront)</div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 06: METRICS -->
+        <section class="numbers-sec">
+            <div class="num-block">
+                <div class="num-val" data-target="50">0</div>
+                <div class="num-label">Systems Shipped</div>
+            </div>
+            <div class="num-block">
+                <div class="num-val" data-target="99">0</div>
+                <div class="num-label">Uptime Percentage</div>
+            </div>
+            <div class="num-block">
+                <div class="num-val" data-target="400">0</div>
+                <div class="num-label">API Endpoints</div>
+            </div>
+            <div class="num-block">
+                <div class="num-val" data-target="15">0</div>
+                <div class="num-label">Million Requests / Mo</div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 07: OUTRO CTA -->
+        <section class="final-sec" id="contact">
+            <div class="final-bg-glow"></div>
+            <h1 class="final-title reveal-text">
+                Let's construct<br>the extraordinary
+            </h1>
+            <div class="final-contact">
+                <a href="mailto:contact@madhav.dev" class="hover-target">Email</a>
+                <a href="#" class="hover-target">GitHub</a>
+                <a href="#" class="hover-target">LinkedIn</a>
+            </div>
+        </section>
+        
+    </div>
+
+    <!-- Script imports -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="textures.js"></script>
+    
+    <script>
+        // ----------------------------------------------------
+        // 1. Setup Custom Cursor with Magnetic & Interaction Lerp
+        // ----------------------------------------------------
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorRing = document.querySelector('.cursor-ring');
+        
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+        let targetX = mouseX;
+        let targetY = mouseY;
+        let isHovered = false;
+        let portraitBaseY = 0;
+        let imageAspectRatio = 3.0 / 4.0;
+
+        window.addEventListener('mousemove', (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+        });
+
+        // Add hover classes
+        const hoverTargets = document.querySelectorAll('.hover-target, a, button, .tech-icon');
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                isHovered = true;
+                gsap.to(cursorRing, {
+                    width: 60,
+                    height: 60,
+                    borderColor: 'rgba(255, 45, 32, 1)',
+                    backgroundColor: 'rgba(255, 45, 32, 0.05)',
+                    duration: 0.3
+                });
+                gsap.to(cursorDot, {
+                    scale: 2,
+                    duration: 0.2
+                });
+            });
+            el.addEventListener('mouseleave', () => {
+                isHovered = false;
+                gsap.to(cursorRing, {
+                    width: 30,
+                    height: 30,
+                    borderColor: 'rgba(255, 45, 32, 0.4)',
+                    backgroundColor: 'rgba(255, 45, 32, 0)',
+                    duration: 0.3
+                });
+                gsap.to(cursorDot, {
+                    scale: 1,
+                    duration: 0.2
+                });
+            });
+        });
+
+        // ----------------------------------------------------
+        // 2. Smooth Scrolling Setup (Lenis)
+        // ----------------------------------------------------
+        const lenis = new Lenis({
+            duration: 1.4,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true,
+            wheelMultiplier: 1.0,
+        });
+
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000) });
+        gsap.ticker.lagSmoothing(0, 0);
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ----------------------------------------------------
+        // 3. WebGL Cinematic Scene (Unified Render Loop)
+        // ----------------------------------------------------
+        const canvas = document.getElementById('webgl-canvas');
+        const bgCanvas = document.getElementById('bg-canvas');
+        
+        // Portrait WebGL Setup (Transparency)
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 5.0;
+
+        const renderer = new THREE.WebGLRenderer({ 
+            canvas: canvas, 
+            alpha: true, 
+            antialias: true,
+            powerPreference: "high-performance"
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Background WebGL Setup (Gradient/Fog/Atmosphere)
+        const bgScene = new THREE.Scene();
+        const bgCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+        const bgRenderer = new THREE.WebGLRenderer({
+            canvas: bgCanvas,
+            antialias: true
+        });
+        bgRenderer.setSize(window.innerWidth, window.innerHeight);
+        bgRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // ----------------------------------------------------
+        // 4. Fluid Ripple Simulation Removed (Per User Request)
+        // ----------------------------------------------------
+
+        // ----------------------------------------------------
+        // 5. Textures Loading (Grayscale & Color Portraits)
+        // ----------------------------------------------------
+        const textureLoader = new THREE.TextureLoader();
+        
+        const textureA = textureLoader.load(BASE64_BW, (tex) => {
+            tex.generateMipmaps = false;
+            tex.minFilter = THREE.LinearFilter;
+            tex.magFilter = THREE.LinearFilter;
+            portraitMaterial.uniforms.u_imageSize.value.set(tex.image.width, tex.image.height);
+            imageAspectRatio = tex.image.width / tex.image.height;
+            resize(); // Trigger initial resize adjustments
+        });
+
+        const textureB = textureLoader.load(BASE64_COLOR, (tex) => {
+            tex.generateMipmaps = false;
+            tex.minFilter = THREE.LinearFilter;
+            tex.magFilter = THREE.LinearFilter;
+        });
+
+        // ----------------------------------------------------
+        // 6. Volumetric Background Shaders
+        // ----------------------------------------------------
+        const bgMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                u_time: { value: 0 },
+                u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
+                u_scroll: { value: 0.0 }
+            },
+            vertexShader: `
+                varying vec2 vUv;
+                void main() {
+                    vUv = uv;
+                    gl_Position = vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                uniform float u_time;
+                uniform vec2 u_resolution;
+                uniform vec2 u_mouse;
+                uniform float u_scroll;
+                varying vec2 vUv;
+
+                // Simplex 2D noise
+                vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+                float snoise(vec2 v){
+                    const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+                            -0.577350269189626, 0.024390243902439);
+                    vec2 i  = floor(v + dot(v, C.yy) );
+                    vec2 x0 = v -   i + dot(i, C.xx);
+                    vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+                    vec4 x12 = x0.xyxy + C.xxzz;
+                    x12.xy -= i1;
+                    i = mod(i, 289.0);
+                    vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+                    + i.x + vec3(0.0, i1.x, 1.0 ));
+                    vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+                        dot(x12.zw,x12.zw)), 0.0);
+                    m = m*m ; m = m*m ;
+                    vec3 x = 2.0 * fract(p * C.www) - 1.0;
+                    vec3 h = abs(x) - 0.5;
+                    vec3 ox = floor(x + 0.5);
+                    vec3 a0 = x - ox;
+                    m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+                    vec3 g;
+                    g.x  = a0.x  * x0.x  + h.x  * x0.y;
+                    g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+                    return 130.0 * dot(m, g);
+                }
+
+                void main() {
+                    vec2 uv = vUv;
+                    
+                    // Bright Cinematic Palette Gradient (Light grey to warm white/cream)
+                    vec2 c = vec2(0.5, 0.5);
+                    float dist = length(uv - c);
+                    vec3 col = mix(vec3(0.97, 0.97, 0.98), vec3(0.93, 0.93, 0.95), dist);
+
+                    // Dynamic Ambient Light Ray / Spotlight source
+                    vec2 lightPos = u_mouse / u_resolution;
+                    float lightDist = length(uv - lightPos);
+                    vec3 spotlight = vec3(1.0, 0.3, 0.25) * (1.0 - smoothstep(0.0, 0.7, lightDist)) * 0.025;
+                    col += spotlight;
+
+                    // Volumetric Fog Animation
+                    float fog = snoise(uv * 1.5 + vec2(u_time * 0.03, u_time * 0.02)) * 0.5 + 0.5;
+                    float fog2 = snoise(uv * 2.8 - vec2(u_time * 0.04, -u_time * 0.035)) * 0.5 + 0.5;
+                    float combinedFog = mix(fog, fog2, 0.5);
+                    vec3 fogColor = vec3(0.92, 0.92, 0.94) * combinedFog * 0.035;
+                    col += fogColor;
+
+                    // Moving Light Rays
+                    vec2 raySrc = vec2(0.2, 0.95);
+                    vec2 diff = uv - raySrc;
+                    float rayAngle = atan(diff.y, diff.x);
+                    float rayNoise = snoise(vec2(rayAngle * 4.0, u_time * 0.08)) * 0.5 + 0.5;
+                    float rayFalloff = smoothstep(1.6, 0.0, length(diff));
+                    col += vec3(1.0, 0.98, 0.95) * rayNoise * rayFalloff * 0.008;
+
+                    // Subtle luxury film noise
+                    float grain = fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453);
+                    col += (grain - 0.5) * 0.012;
+
+                    // Fade to pure white as scroll increases
+                    float scrollFade = clamp(u_scroll / 600.0, 0.0, 1.0);
+                    col = mix(col, vec3(1.0), scrollFade);
+
+                    gl_FragColor = vec4(col, 1.0);
+                }
+            `
+        });
+
+        const bgMesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), bgMaterial);
+        bgScene.add(bgMesh);
+
+        // ----------------------------------------------------
+        // 7. Interactive Portrait Mesh Material (Shaders)
+        // ----------------------------------------------------
+        const portraitMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                u_textureA: { value: textureA },
+                u_textureB: { value: textureB },
+                u_time: { value: 0 },
+                u_mouseMeshUv: { value: new THREE.Vector2(0.5, 0.5) },
+                u_hoverStrength: { value: 0.0 },
+                u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                u_imageSize: { value: new THREE.Vector2(1000, 1333) }, // original size aspect 3:4
+                u_planeSize: { value: new THREE.Vector2(1, 1) },
+                u_revealRadius: { value: 0.35 }, // Size of eyes reveal region in world space
+                u_scroll: { value: 0 },
+                u_tilt: { value: new THREE.Vector2() },
+                u_textureBOffset: { value: new THREE.Vector2(0.0, 0.0) }
+            },
+            vertexShader: `
+                varying vec2 vUv;
+                varying vec3 vViewPosition;
+                void main() {
+                    vUv = uv;
+                    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                    vViewPosition = -mvPosition.xyz;
+                    gl_Position = projectionMatrix * mvPosition;
+                }
+            `,
+            fragmentShader: `
+                uniform sampler2D u_textureA;
+                uniform sampler2D u_textureB;
+                uniform float u_time;
+                uniform vec2 u_mouseMeshUv;
+                uniform float u_hoverStrength;
+                uniform vec2 u_resolution;
+                uniform vec2 u_imageSize;
+                uniform vec2 u_planeSize;
+                uniform float u_revealRadius;
+                uniform float u_scroll;
+                uniform vec2 u_textureBOffset;
+                varying vec2 vUv;
+                varying vec3 vViewPosition;
+
+                // CSS object-fit cover math
+                vec2 getCoverUV(vec2 uv, vec2 imgSize, vec2 planeSize) {
+                    float imgAspect = imgSize.x / imgSize.y;
+                    float planeAspect = planeSize.x / planeSize.y;
+                    
+                    vec2 scale = vec2(1.0);
+                    if (planeAspect > imgAspect) {
+                        scale.y = imgAspect / planeAspect;
+                    } else {
+                        scale.x = planeAspect / imgAspect;
+                    }
+                    
+                    return (uv - 0.5) * scale + 0.5;
+                }
+
+                void main() {
+                    vec2 coverUv = getCoverUV(vUv, u_imageSize, u_planeSize);
+
+                    // 1. Portrait A & B texture reads
+                    vec4 texColA = texture2D(u_textureA, coverUv);
+                    vec3 colA = texColA.rgb;
+
+                    // Apply offset to texture B's UV
+                    vec2 coverUvB = coverUv + u_textureBOffset;
+                    vec4 texColB = texture2D(u_textureB, coverUvB);
+                    vec3 colB = texColB.rgb;
+
+                    // 2. Spotlight Reveal Mask centered on cursor in local world space
+                    vec2 diff = (vUv - u_mouseMeshUv) * u_planeSize;
+                    float dist = length(diff);
+                    
+                    float radius = u_revealRadius;
+                    
+                    // Reveal mask with smooth edges
+                    float revealMask = smoothstep(radius, radius - 0.08, dist) * u_hoverStrength;
+
+                    // Combine Portraits A and B
+                    vec3 finalColor = mix(colA, colB, revealMask);
+                    float finalAlpha = mix(texColA.a, texColB.a, revealMask);
+
+                    // Output raw high-resolution colors directly to avoid post-process lighting blur
+
+                    // Fade portrait on scroll out
+                    float fadeFactor = 1.0 - clamp((u_scroll - 200.0) / 400.0, 0.0, 1.0);
+                    
+                    gl_FragColor = vec4(finalColor, finalAlpha * fadeFactor);
+                }
+            `,
+            transparent: true,
+            depthWrite: false
+        });
+
+        // 3D Plane Mesh for Portrait
+        const portraitGeometry = new THREE.PlaneGeometry(1, 1, 32, 32);
+        const portraitMesh = new THREE.Mesh(portraitGeometry, portraitMaterial);
+        scene.add(portraitMesh);
+
+        // ----------------------------------------------------
+        // 8. Dynamic 3D Particle System
+        // ----------------------------------------------------
+        const particleCount = window.innerWidth < 768 ? 60 : 150;
+        const particleGeometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const initialPartData = [];
+
+        for (let i = 0; i < particleCount; i++) {
+            const x = (Math.random() - 0.5) * 5.0;
+            const y = (Math.random() - 0.5) * 3.5;
+            const z = (Math.random() - 0.5) * 2.0 - 0.5; // Spread around depth Z
+            
+            positions[i * 3] = x;
+            positions[i * 3 + 1] = y;
+            positions[i * 3 + 2] = z;
+            
+            initialPartData.push({
+                x, y, z,
+                speedX: (Math.random() - 0.5) * 0.015,
+                speedY: (Math.random() - 0.5) * 0.015,
+                speedZ: (Math.random() - 0.5) * 0.008,
+                amp: Math.random() * 0.08 + 0.02,
+                freq: Math.random() * 0.4 + 0.1,
+                phase: Math.random() * Math.PI * 2
+            });
+        }
+
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const particleMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                u_time: { value: 0 },
+                u_mouse3D: { value: new THREE.Vector3() },
+                u_scroll: { value: 0 }
+            },
+            vertexShader: `
+                uniform float u_time;
+                uniform vec3 u_mouse3D;
+                varying float vAlpha;
+                void main() {
+                    vec3 pos = position;
+                    
+                    // Subtle magnetic attraction
+                    float d = distance(pos, u_mouse3D);
+                    if (d < 2.0) {
+                        float pull = (1.0 - (d / 2.0)) * 0.16;
+                        pos = mix(pos, u_mouse3D, pull);
+                    }
+                    
+                    vAlpha = smoothstep(-2.5, 0.5, pos.z) * 0.65;
+                    
+                    vec4 mvPos = modelViewMatrix * vec4(pos, 1.0);
+                    gl_PointSize = (12.0 / -mvPos.z) * (1.0 + sin(u_time * 2.5 + pos.x) * 0.2);
+                    gl_Position = projectionMatrix * mvPos;
+                }
+            `,
+            fragmentShader: `
+                varying float vAlpha;
+                void main() {
+                    float dist = length(gl_PointCoord - vec2(0.5));
+                    if (dist > 0.5) discard;
+                    
+                    // Draw soft glowing spherical particles
+                    float glow = smoothstep(0.5, 0.0, dist);
+                    
+                    // Contrast charcoal / deep red code spark colors for bright background
+                    vec3 col = mix(vec3(0.08, 0.08, 0.12), vec3(0.85, 0.15, 0.1), gl_PointCoord.y);
+                    gl_FragColor = vec4(col, glow * vAlpha * 1.5);
+                }
+            `,
+            transparent: true,
+            depthWrite: false
+        });
+
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particles);
+
+        const raycaster = new THREE.Raycaster();
+        const mousePlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+        const mouse3D = new THREE.Vector3();
+
+        // ----------------------------------------------------
+        // 9. Window Resize & Cover Calculations
+        // ----------------------------------------------------
+        function resize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            // Portrait Canvas Render sizing
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+
+            // Background Canvas sizing
+            bgRenderer.setSize(width, height);
+            bgMaterial.uniforms.u_resolution.value.set(width, height);
+            
+            // Adjust orthographic visible dimensions at z = 0
+            const vFOV = camera.fov * Math.PI / 180;
+            const visibleHeight = 2.0 * Math.tan(vFOV / 2.0) * camera.position.z;
+            const visibleWidth = visibleHeight * camera.aspect;
+
+            // Portrait Mesh scaling to act like "object-fit: contain/cover"
+            const imgAspect = imageAspectRatio;
+            const targetHeight = visibleHeight * 0.76; // Slightly larger for layout balance
+            const targetWidth = targetHeight * imgAspect;
+
+            if (visibleWidth * 0.95 < targetWidth) {
+                const mobileWidth = visibleWidth * 0.9;
+                portraitMesh.scale.set(mobileWidth, mobileWidth / imgAspect, 1.0);
+            } else {
+                portraitMesh.scale.set(targetWidth, targetHeight, 1.0);
+            }
+
+            // Set base Y coordinate so that the bottom of the portrait aligns with bottom of viewport
+            portraitBaseY = -visibleHeight / 2.0 + portraitMesh.scale.y / 2.0;
+            portraitMesh.position.y = portraitBaseY;
+
+            // Sync plane size in material
+            portraitMaterial.uniforms.u_planeSize.value.set(portraitMesh.scale.x, portraitMesh.scale.y);
+            portraitMaterial.uniforms.u_resolution.value.set(width, height);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        // ----------------------------------------------------
+        // 10. WebGL Unified Rendering & Animation Loop
+        // ----------------------------------------------------
+        const clock = new THREE.Clock();
+        let prevX = -1;
+        let prevY = -1;
+        let uvMouse = new THREE.Vector2(-1, -1);
+        let speed = 0;
+        let targetSpeed = 0;
+        
+        let meshTargetRotX = 0;
+        let meshTargetRotY = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const time = clock.getElapsedTime();
+            const scrollY = window.scrollY;
+
+            // Custom Cursor Dot matches mouse position instantly for sharp responsiveness
+            mouseX = targetX;
+            mouseY = targetY;
+            
+            // Custom Cursor Ring follows with a smooth, premium elastic lag
+            ringX += (targetX - ringX) * 0.12;
+            ringY += (targetY - ringY) * 0.12;
+
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+            cursorRing.style.left = ringX + 'px';
+            cursorRing.style.top = ringY + 'px';
+
+            // Calculate instantaneous mouse velocity for ripples
+            if (prevX >= 0 && prevY >= 0) {
+                const dist = Math.sqrt(Math.pow(targetX - prevX, 2) + Math.pow(targetY - prevY, 2));
+                targetSpeed = Math.min(dist * 0.06, 1.5);
+            }
+            prevX = targetX;
+            prevY = targetY;
+
+            // Smooth speed decay for water
+            speed += (targetSpeed - speed) * 0.1;
+            targetSpeed *= 0.85; // rapid bleed out
+
+            // Map mouse coordinates to WebGL texture coordinates
+            uvMouse.set(targetX / window.innerWidth, targetY / window.innerHeight);
+
+            // 2. Uniform updates for portrait shader
+            portraitMaterial.uniforms.u_time.value = time;
+            portraitMaterial.uniforms.u_scroll.value = scrollY;
+
+            // 3. Keep Portrait Mesh stable (no floating drift)
+            portraitMesh.position.y = portraitBaseY;
+            portraitMesh.position.x = 0;
+
+            // 4. Keep Portrait Mesh stable (no 3D Tilt following cursor)
+            portraitMesh.rotation.set(0, 0, 0);
+
+            // 5. Keep scale stable (no accumulative scroll zoom)
+            // Base scale is computed in resize() and kept constant.
+
+            // 6. Update 3D Raycast cursor coordinate for particles and portrait UV reveal
+            raycaster.setFromCamera(new THREE.Vector2(
+                (targetX / window.innerWidth) * 2.0 - 1.0,
+                -(targetY / window.innerHeight) * 2.0 + 1.0
+            ), camera);
+            raycaster.ray.intersectPlane(mousePlane, mouse3D);
+            particleMaterial.uniforms.u_mouse3D.value.copy(mouse3D);
+            particleMaterial.uniforms.u_time.value = time;
+
+            // Raycast against portraitMesh to find UV coordinates on the face for color reveal
+            const intersects = raycaster.intersectObject(portraitMesh);
+            let targetHoverStrength = 0.0;
+            if (intersects.length > 0) {
+                targetHoverStrength = 1.0;
+                const uv = intersects[0].uv;
+                portraitMaterial.uniforms.u_mouseMeshUv.value.x += (uv.x - portraitMaterial.uniforms.u_mouseMeshUv.value.x) * 0.12;
+                portraitMaterial.uniforms.u_mouseMeshUv.value.y += (uv.y - portraitMaterial.uniforms.u_mouseMeshUv.value.y) * 0.12;
+            }
+            portraitMaterial.uniforms.u_hoverStrength.value += (targetHoverStrength - portraitMaterial.uniforms.u_hoverStrength.value) * 0.08;
+
+            // 7. Slow particle animation drift
+            const pPositions = particleGeometry.attributes.position.array;
+            for (let i = 0; i < particleCount; i++) {
+                const data = initialPartData[i];
+                // Perlin-like slow floating sine oscillation
+                const wave = Math.sin(time * data.freq + data.phase) * data.amp;
+                
+                pPositions[i * 3] = data.x + wave * 0.6;
+                pPositions[i * 3 + 1] = data.y + wave;
+                
+                // slow drift forward
+                data.z += data.speedZ;
+                if (data.z > 1.5) data.z = -2.5; // wrap particles
+                pPositions[i * 3 + 2] = data.z;
+            }
+            particleGeometry.attributes.position.needsUpdate = true;
+
+            // 8. Background atmosphere rendering
+            bgMaterial.uniforms.u_time.value = time;
+            bgMaterial.uniforms.u_mouse.value.set(mouseX, mouseY);
+            bgMaterial.uniforms.u_scroll.value = scrollY;
+            bgRenderer.render(bgScene, bgCamera);
+
+            // 9. Main scene portrait rendering
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // ----------------------------------------------------
+        // 11. GSAP Scroll Trigger Animations
+        // ----------------------------------------------------
+        // Typography letter splitting
+        const splitText = new SplitType('.hero-name-heading span', { types: 'chars' });
+
+        // Animate typography letter entry on page load
+        gsap.from('.hero-name-heading .char', {
+            y: "100%",
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.03,
+            ease: "power4.out",
+            delay: 0.4,
+            clearProps: "transform,opacity"
+        });
+
+        // Typography break apart scroll parallax (outline moves left, fill moves right)
+        gsap.to('.hero-name-heading .outline', {
+            x: -120,
+            scrollTrigger: {
+                trigger: '.hero-section',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+        gsap.to('.hero-name-heading .fill', {
+            x: 120,
+            scrollTrigger: {
+                trigger: '.hero-section',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+
+        // Fade typography on scroll out
+        gsap.to('.hero-name-heading', {
+            opacity: 0,
+            scale: 0.9,
+            scrollTrigger: {
+                trigger: '.hero-section',
+                start: 'top top',
+                end: '60% top',
+                scrub: true
+            }
+        });
+
+        // Fade in UI cards and header elements on page load
+        gsap.from('.hero-info-card', {
+            x: -40,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            delay: 0.8
+        });
+        gsap.from('.hero-social-pills', {
+            x: 40,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            delay: 0.8
+        });
+        gsap.from('.nav-container', {
+            y: -20,
+            opacity: 0,
+            duration: 1.0,
+            ease: "power3.out",
+            delay: 0.2
+        });
+
+        // ----------------------------------------------------
+        // 13. Page Content Scroll Interactions (Lenis-linked)
+        // ----------------------------------------------------
+
+        // Manifesto revealing words
+        const manifestoSplit = new SplitType('.manifesto-text', { types: 'words' });
+        gsap.from(manifestoSplit.words, {
+            opacity: 0.12,
+            stagger: 0.08,
+            scrollTrigger: {
+                trigger: ".manifesto-sec",
+                start: "top 75%",
+                end: "center center",
+                scrub: 1
+            }
+        });
+        
+        manifestoSplit.words.forEach(word => {
+            gsap.to(word, {
+                color: '#ffffff',
+                scrollTrigger: {
+                    trigger: word,
+                    start: "top 72%",
+                    end: "top 50%",
+                    scrub: true
+                }
+            });
+        });
+
+        // About section slide trigger
+        gsap.fromTo('.about-portrait', 
+            { scale: 1.15 },
+            { 
+                scale: 1, 
+                scrollTrigger: { 
+                    trigger: ".about-sec", 
+                    start: "top bottom", 
+                    end: "top top", 
+                    scrub: true 
+                }
+            }
+        );
+
+        // Projects Stack pin trigger
+        const projects = gsap.utils.toArray('.project-panel');
+        projects.forEach((panel) => {
+            ScrollTrigger.create({
+                trigger: panel,
+                start: "top top",
+                pin: true,
+                pinSpacing: false
+            });
+            
+            const img = panel.querySelector('.project-mockup img');
+            gsap.fromTo(img, 
+                { scale: 1.22, opacity: 0.5 },
+                { 
+                    scale: 1, 
+                    opacity: 0.95,
+                    scrollTrigger: { 
+                        trigger: panel, 
+                        start: "top bottom", 
+                        end: "top top", 
+                        scrub: true 
+                    }
+                }
+            );
+        });
+
+        // High scale network packets
+        // Dynamic stats calculations
+        const stats = document.querySelectorAll('.num-val');
+        stats.forEach(stat => {
+            gsap.to(stat, {
+                scrollTrigger: { trigger: stat, start: "top 80%" },
+                innerHTML: stat.getAttribute('data-target'),
+                duration: 2.2,
+                snap: { innerHTML: 1 },
+                ease: "power2.out"
+            });
+        });
+
+        // Reveal standard headlines
+        const reveals = document.querySelectorAll('.reveal-text');
+        reveals.forEach(el => {
+            const split = new SplitType(el, { types: 'words, chars' });
+            gsap.from(split.chars, {
+                opacity: 0,
+                y: 40,
+                rotateX: -40,
+                stagger: 0.025,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                }
+            });
+        });
+
+        // Nudge offset controls to align black and color images perfectly
+        let offsetX = -1.0 / 612.0; // Initial guess: dx = -1px
+        let offsetY = -4.0 / 408.0; // Initial guess: dy = 4px (WebGL inverted)
+        portraitMaterial.uniforms.u_textureBOffset.value.set(offsetX, offsetY);
+
+        window.addEventListener('keydown', (e) => {
+            const step = 1.0 / 612.0; // 1 pixel step size
+            if (e.key === 'ArrowLeft') {
+                offsetX -= step;
+            } else if (e.key === 'ArrowRight') {
+                offsetX += step;
+            } else if (e.key === 'ArrowUp') {
+                offsetY += step;
+            } else if (e.key === 'ArrowDown') {
+                offsetY -= step;
+            } else {
+                return;
+            }
+            portraitMaterial.uniforms.u_textureBOffset.value.set(offsetX, offsetY);
+            console.log(`Texture B Offset: dx = ${(offsetX * 612.0).toFixed(2)}px, dy = ${(-offsetY * 408.0).toFixed(2)}px (offsetX = ${offsetX.toFixed(6)}, offsetY = ${offsetY.toFixed(6)})`);
+        });
+
+    </script>
+</body>
+</html>

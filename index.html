@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nithish Ganesan — Software Engineer | Java Developer</title>
+  
+  <!-- SEO & Open Graph Meta Tags -->
+  <meta name="description" content="Portfolio of Nithish Ganesan — Software Engineer and Java Developer. B.Tech IT graduate specializing in Full Stack Java, RESTful APIs, MySQL, React Native, and database-driven software architectures.">
+  <meta name="keywords" content="Nithish Ganesan, Software Engineer, Java Developer, Full Stack Java, React Native, REST API, MySQL, Android, Developer Portfolio, Krishnagiri">
+  <meta name="author" content="Nithish Ganesan">
+  
+  <meta property="og:title" content="Nithish Ganesan — Software Engineer | Java Developer">
+  <meta property="og:description" content="High-performance Full Stack Java, REST API, and mobile applications portfolio.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nithishganesan.dev">
+  <meta property="og:image" content="assets/clr.png">
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563EB'/><text x='50%' y='65%' font-family='sans-serif' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>NG</text></svg>">
+</head>
+<body>
+
+  <!-- Ambient Background Matrix & Gradients -->
+  <div class="ambient-background" aria-hidden="true"></div>
+
+  <!-- Custom Magnetic Cursor Elements -->
+  <div class="custom-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- Toast Notification for Clipboard Copy -->
+  <div id="toastNotice" class="toast-notice" role="status" aria-live="polite"></div>
+
+  <!-- ========================================================================
+       NAVIGATION HEADER
+       ======================================================================== -->
+  <header class="site-header" id="topHeader">
+    <div class="container nav-wrapper">
+      <!-- Primary Navigation -->
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-menu">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#architecture" class="nav-link">Architecture</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <a href="#contact" class="btn-nav-cta">Let's Talk ↗</a>
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu-drawer" aria-label="Mobile Navigation Drawer">
+    <a href="#about" class="mobile-menu-link">About</a>
+    <a href="#skills" class="mobile-menu-link">Skills</a>
+    <a href="#projects" class="mobile-menu-link">Projects</a>
+    <a href="#architecture" class="mobile-menu-link">Architecture</a>
+    <a href="#experience" class="mobile-menu-link">Experience</a>
+    <a href="#education" class="mobile-menu-link">Education</a>
+    <a href="#contact" class="mobile-menu-link">Contact</a>
+  </div>
+
+  <main>
+    <!-- ======================================================================
+         HERO SECTION — Immersive 3D Composition & Editorial Hero
+         ====================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Hero Text Content -->
+          <div class="hero-content">
+            <div class="hero-tagline-wrap">
+              <span class="tech-dot-pulse"></span>
+              <span class="hero-tagline">Java Developer & Full Stack Engineer</span>
+            </div>
+
+            <h1 class="hero-title">
+              <span class="title-outline" aria-label="NITHISH">
+                <span class="char">N</span><span class="char">I</span><span class="char">T</span><span class="char">H</span><span class="char">I</span><span class="char">S</span><span class="char">H</span>
+              </span>
+              <span class="title-fill" aria-label="GANESAN">
+                <span class="char">G</span><span class="char">A</span><span class="char">N</span><span class="char">E</span><span class="char">S</span><span class="char">A</span><span class="char">N</span>
+              </span>
+            </h1>
+
+            <div class="hero-subtitle">
+              <span class="hero-subtitle-divider"></span>
+              <span>Software Engineer | Java Developer</span>
+            </div>
+
+            <p class="hero-description">
+              Software engineer focused on building practical web and mobile applications. Experienced in Java, React Native, PHP, MySQL, and REST APIs, with an interest in scalable software development and modern technologies.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#projects" class="btn-primary">
+                <span>Explore My Projects</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+              <a href="#contact" class="btn-secondary">Let's Connect</a>
+              <a href="resume.pdf" class="btn-ghost" download="Nithish_Ganesan_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Resume (PDF)</span>
+              </a>
+            </div>
+
+            <!-- Social Links Verified from Resume -->
+            <div class="hero-social-links">
+              <a href="https://linkedin.com/in/nithishganesan1710" target="_blank" rel="noopener noreferrer" class="social-chip">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+
+              <a href="https://github.com/nithishganesan17" target="_blank" rel="noopener noreferrer" class="social-chip">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                <span>GitHub</span>
+              </a>
+
+              <a href="mailto:nithishganesh1710@gmail.com" class="social-chip">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>Email</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero 3D Interactive Stage -->
+          <div class="hero-visual-stage">
+            <div class="hero-3d-card" id="heroCard3d">
+              <div class="hero-card-glow"></div>
+              
+              <div class="hero-portrait-frame">
+                <!-- Default Black and White Portrait -->
+                <img src="assets/hero-bw.png" alt="Nithish Ganesan Portrait (Monochrome)" class="hero-portrait-img hero-portrait-bw">
+                <!-- Color Portrait revealed on cursor hover -->
+                <img src="assets/hero.png" alt="Nithish Ganesan Portrait (Color)" class="hero-portrait-img hero-portrait-color">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ABOUT ME SECTION — Editorial Layout
+         ====================================================================== -->
+    <section class="section" id="about">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-label-chip">
+            <span>01 // PROFILE & BACKGROUND</span>
+          </div>
+          <h2 class="section-title">ENGINEERING WITH PURPOSE & PRECISION</h2>
+        </div>
+
+        <div class="about-wrap">
+          <!-- Editorial Narrative Column -->
+          <div class="about-narrative">
+            <div class="about-editorial-quote">
+              I bridge <em>backend logic</em>, <em>database stability</em>, and <em>intuitive interfaces</em> into dependable software products.
+            </div>
+
+            <div class="about-paragraphs">
+              <p>
+                I enjoy turning ideas into useful software applications, from responsive web interfaces to database-driven mobile solutions. My experience includes working with Java, JavaScript, React Native, PHP, MySQL, and RESTful APIs. During my development and internship experience, I have worked on application features, database integration, testing, and iterative improvements. I value clean implementation, collaboration, and continuous learning, and I aim to build software that is reliable, maintainable, and useful to its users.
+              </p>
+            </div>
+
+            <!-- Key Capability Highlights -->
+            <div class="about-highlights-grid">
+              <div class="highlight-card">
+                <div class="highlight-icon-wrap" style="background: rgba(37, 99, 235, 0.1); color: var(--accent-primary);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                </div>
+                <h3 class="highlight-title">Full Stack Development</h3>
+                <p class="highlight-desc">Developing multi-tier architectures from responsive interfaces to robust server-side processing.</p>
+              </div>
+
+              <div class="highlight-card">
+                <div class="highlight-icon-wrap" style="background: rgba(5, 150, 105, 0.1); color: var(--accent-emerald);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                  </svg>
+                </div>
+                <h3 class="highlight-title">Database Engineering</h3>
+                <p class="highlight-desc">Certified in Oracle SQL with deep knowledge of relational schemas, indexes, and transactional CRUD flow.</p>
+              </div>
+
+              <div class="highlight-card">
+                <div class="highlight-icon-wrap" style="background: rgba(124, 58, 237, 0.1); color: var(--accent-violet);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                  </svg>
+                </div>
+                <h3 class="highlight-title">Mobile Engineering</h3>
+                <p class="highlight-desc">React Native and Android mobile apps coupled with REST APIs for fluid, database-driven user experiences.</p>
+              </div>
+
+              <div class="highlight-card">
+                <div class="highlight-icon-wrap" style="background: rgba(234, 88, 12, 0.1); color: var(--accent-orange);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                </div>
+                <h3 class="highlight-title">Agile & Sprint Delivery</h3>
+                <p class="highlight-desc">Experienced with Scrum workflows, requirement analysis, testing routines, and timely technical reports.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TECHNICAL SKILLS SECTION
+         ====================================================================== -->
+    <section class="section" id="skills" style="background-color: var(--bg-secondary);">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-label-chip">
+            <span>02 // TECHNICAL MATRIX</span>
+          </div>
+          <h2 class="section-title">VERIFIED TECHNICAL STACK</h2>
+          <p class="section-subtitle">Organized by specialization based on verified resume credentials and real application implementations.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="skills-tabs" role="tablist">
+          <button class="skill-tab-btn active" data-filter="all">All Disciplines</button>
+          <button class="skill-tab-btn" data-filter="programming">Programming</button>
+          <button class="skill-tab-btn" data-filter="frontend">Frontend</button>
+          <button class="skill-tab-btn" data-filter="backend">Backend & DB</button>
+          <button class="skill-tab-btn" data-filter="tools">Tools</button>
+          <button class="skill-tab-btn" data-filter="practices">Engineering Practices</button>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="skills-grid">
+          
+          <!-- Programming -->
+          <div class="skill-category-card" data-category="programming">
+            <div class="skill-cat-header">
+              <h3 class="skill-cat-title">Programming</h3>
+              <span class="skill-cat-count">3 Technologies</span>
+            </div>
+            <div class="skill-items-wrap">
+              <div class="skill-pill">
+                <span class="skill-pill-bullet"></span>
+                <span>Java</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet"></span>
+                <span>SQL</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet"></span>
+                <span>JavaScript</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frontend -->
+          <div class="skill-category-card" data-category="frontend">
+            <div class="skill-cat-header">
+              <h3 class="skill-cat-title">Frontend</h3>
+              <span class="skill-cat-count">4 Technologies</span>
+            </div>
+            <div class="skill-items-wrap">
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-emerald);"></span>
+                <span>HTML</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-emerald);"></span>
+                <span>CSS</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-emerald);"></span>
+                <span>React</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-emerald);"></span>
+                <span>React Native</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Backend & Database -->
+          <div class="skill-category-card" data-category="backend">
+            <div class="skill-cat-header">
+              <h3 class="skill-cat-title">Backend & Database</h3>
+              <span class="skill-cat-count">3 Technologies</span>
+            </div>
+            <div class="skill-items-wrap">
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-teal);"></span>
+                <span>PHP</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-teal);"></span>
+                <span>RESTful APIs</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-teal);"></span>
+                <span>MySQL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Developer Tools -->
+          <div class="skill-category-card" data-category="tools">
+            <div class="skill-cat-header">
+              <h3 class="skill-cat-title">Developer Tools</h3>
+              <span class="skill-cat-count">5 Tools</span>
+            </div>
+            <div class="skill-items-wrap">
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-violet);"></span>
+                <span>VS Code</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-violet);"></span>
+                <span>Git</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-violet);"></span>
+                <span>GitHub</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-violet);"></span>
+                <span>Postman</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-violet);"></span>
+                <span>XAMPP</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Engineering Practices -->
+          <div class="skill-category-card" data-category="practices">
+            <div class="skill-cat-header">
+              <h3 class="skill-cat-title">Engineering Practices</h3>
+              <span class="skill-cat-count">4 Methodologies</span>
+            </div>
+            <div class="skill-items-wrap">
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-orange);"></span>
+                <span>CI/CD</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-orange);"></span>
+                <span>DevOps Tools (Basics)</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-orange);"></span>
+                <span>Agile Methodologies</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-pill-bullet" style="background: var(--accent-orange);"></span>
+                <span>Software Testing</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         FEATURED PROJECTS SECTION — Large Editorial Showcases
+         ====================================================================== -->
+    <section class="section" id="projects">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-label-chip">
+            <span>03 // FEATURED ENGINEERING PROJECTS</span>
+          </div>
+          <h2 class="section-title">REAL-WORLD APPLICATIONS</h2>
+          <p class="section-subtitle">Real, documented projects featuring multi-tier architectures, payment gateway integrations, and mobile REST API synchronizations.</p>
+        </div>
+
+        <div class="projects-showcase-wrap">
+
+          <!-- PROJECT 01: Stall Spot -->
+          <article class="project-card" id="project-stall-spot">
+            <div class="project-split-layout">
+              
+              <!-- Left Details Column -->
+              <div class="project-details-pane">
+                <div class="project-meta-strip">
+                  <span class="project-number">PROJECT // 01</span>
+                  <span class="project-category">Campus Food Ordering System</span>
+                </div>
+
+                <h3 class="project-title">STALL SPOT</h3>
+                <div class="project-tagline">Multi-Portal Food Ordering & Payment Platform</div>
+
+                <p class="project-desc-text">
+                  Built a campus food-ordering platform with student, owner, and admin portals, pre-parcel ordering, Razorpay payments, and stall analytics.
+                </p>
+
+                <!-- Documented Functionality -->
+                <ul class="project-feature-list">
+                  <li class="project-feature-item">
+                    <svg class="feature-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span><strong>Pre-Parcel Ordering:</strong> Advance meal scheduling to eliminate canteen waiting time.</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <svg class="feature-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span><strong>Wallet Payment with Razorpay:</strong> Secure digital wallet top-up and rapid checkout integration.</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <svg class="feature-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span><strong>Stall Owner Analytics:</strong> Interactive sales graphs, revenue summaries, and queue monitoring.</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <svg class="feature-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span><strong>Database Architecture:</strong> Relational MySQL CRUD schemas for stalls, menus, and orders.</span>
+                  </li>
+                </ul>
+
+                <!-- Verified Technologies -->
+                <div class="project-tech-pills">
+                  <span class="tech-tag">Java</span>
+                  <span class="tech-tag">PHP</span>
+                  <span class="tech-tag">MySQL</span>
+                  <span class="tech-tag">Android</span>
+                  <span class="tech-tag">XML</span>
+                  <span class="tech-tag">Razorpay API</span>
+                  <span class="tech-tag">CRUD Operations</span>
+                </div>
+
+                <div class="project-actions">
+                  <a href="https://github.com/nithishganesan17" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                    <span>View Repository ↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Right Mockup Column (Browser Window Mockup) -->
+              <div class="mockup-pane">
+                <div class="browser-window-frame">
+                  <div class="browser-titlebar">
+                    <div class="browser-dots">
+                      <span class="browser-dot dot-red"></span>
+                      <span class="browser-dot dot-yellow"></span>
+                      <span class="browser-dot dot-green"></span>
+                    </div>
+                    <div class="browser-address-bar">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                      <span>https://stallspot.campus/portal/dashboard</span>
+                    </div>
+                  </div>
+                  <img src="assets/stall_spot_ui.jpg" alt="Stall Spot Campus Food Ordering Dashboard Showcase" class="browser-content-img" loading="lazy">
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+
+          <!-- PROJECT 02: PUPFORD -->
+          <article class="project-card" id="project-pupford">
+            <div class="project-split-layout-reversed">
+              
+              <!-- Left Mockup Column (Smartphone Frame Mockup) -->
+              <div class="mockup-pane">
+                <div class="phone-mockup-frame">
+                  <div class="phone-notch"></div>
+                  <div class="phone-screen-container">
+                    <img src="assets/pupford_ui.jpg" alt="PUPFORD Mobile App Interface" class="phone-screen-img" loading="lazy">
+                    <div class="phone-brand-title">PUPFORD</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Details Column -->
+              <div class="project-details-pane">
+                <div class="project-meta-strip">
+                  <span class="project-number">PROJECT // 02</span>
+                  <span class="project-category">Mobile Application</span>
+                </div>
+
+                <h3 class="project-title">PUPFORD</h3>
+                <div class="project-tagline">Agile-Engineered Pet Care Mobile Application</div>
+
+                <p class="project-desc-text">
+                  Developed a React Native application using PHP, MySQL, and REST APIs, with iterative implementation, testing, and improvements.
+                </p>
+
+                <!-- Documented Functionality -->
+                <ul class="project-feature-list">
+                  <li class="project-feature-item">
+                    <svg class="feature-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span><strong>Database-Driven REST APIs:</strong> PHP and MySQL backend services for dynamic transactions and profile records.</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <svg class="feature-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span><strong>Agile Development Lifecycle:</strong> Iterative sprint planning, cross-platform UI development, and testing routines.</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <svg class="feature-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span><strong>Iterative Refinements:</strong> User-flow enhancements, pet diet tracker summaries, and veterinary bookings.</span>
+                  </li>
+                </ul>
+
+                <!-- Verified Technologies -->
+                <div class="project-tech-pills">
+                  <span class="tech-tag">React Native</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">PHP</span>
+                  <span class="tech-tag">MySQL</span>
+                  <span class="tech-tag">RESTful APIs</span>
+                  <span class="tech-tag">Agile Methodologies</span>
+                </div>
+
+                <div class="project-actions">
+                  <a href="https://github.com/nithishganesan17" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                    <span>View Repository ↗</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TECHNICAL WORKFLOW VISUALIZATION SECTION
+         ====================================================================== -->
+    <section class="section" id="architecture" style="background-color: var(--bg-secondary);">
+      <div class="container">
+        
+        <div class="workflow-diagram-container">
+          
+          <div class="workflow-header">
+            <div class="section-label-chip">
+              <span>04 // SYSTEM ENGINEERING PIPELINE</span>
+            </div>
+            <h2 class="section-title">FULL-STACK DATA FLOW ARCHITECTURE</h2>
+            <p class="section-subtitle">Illustrative architectural model demonstrating how client requests travel through REST endpoints and application services into transactional databases.</p>
+          </div>
+
+          <!-- Flowchart with Live Stream Indicator -->
+          <div class="workflow-flowchart">
+            
+            <!-- Connector Line with Flowing Packet -->
+            <div class="workflow-connector" aria-hidden="true">
+              <div class="packet-stream"></div>
+            </div>
+
+            <!-- Step 1 -->
+            <div class="workflow-node-card">
+              <span class="workflow-step-num">STEP // 01</span>
+              <div class="workflow-node-icon" style="background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <h3 class="node-title">Frontend & Mobile</h3>
+              <p class="node-desc">React, React Native, HTML/CSS & Android XML interfaces capture user input and trigger asynchronous actions.</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="workflow-node-card">
+              <span class="workflow-step-num">STEP // 02</span>
+              <div class="workflow-node-icon" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <h3 class="node-title">RESTful API Layer</h3>
+              <p class="node-desc">Structured HTTP endpoints validate payloads, manage request headers, and enforce routing protocols.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="workflow-node-card">
+              <span class="workflow-step-num">STEP // 03</span>
+              <div class="workflow-node-icon" style="background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+              </div>
+              <h3 class="node-title">Backend Logic</h3>
+              <p class="node-desc">Java and PHP application tiers execute business rules, authentication verification, and data transformations.</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="workflow-node-card">
+              <span class="workflow-step-num">STEP // 04</span>
+              <div class="workflow-node-icon" style="background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                </svg>
+              </div>
+              <h3 class="node-title">MySQL Database</h3>
+              <p class="node-desc">Relational tables with indexing, transactional CRUD operations, and strict foreign-key integrity.</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         EXPERIENCE & EDUCATION SECTION
+         ====================================================================== -->
+    <section class="section" id="experience">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-label-chip">
+            <span>05 // CAREER TIMELINE & ACADEMICS</span>
+          </div>
+          <h2 class="section-title">EXPERIENCE & EDUCATION</h2>
+          <p class="section-subtitle">Verified professional internship and academic milestones documented in my resume.</p>
+        </div>
+
+        <div class="dual-timeline-grid">
+          
+          <!-- Experience Column -->
+          <div class="timeline-column">
+            <h3 class="timeline-col-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-primary);">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+              <span>Professional Experience</span>
+            </h3>
+
+            <div class="timeline-track">
+              <div class="timeline-item">
+                <span class="timeline-marker"></span>
+                <div class="timeline-content-card">
+                  <span class="timeline-period-badge">July 2025 – September 2025</span>
+                  <h4 class="timeline-role">Full Stack Java Intern</h4>
+                  <div class="timeline-org">Code Fluxz • Remote</div>
+                  
+                  <ul class="timeline-bullet-list">
+                    <li class="timeline-bullet">
+                      Engineered digital solutions and contributed to real-world industry projects focusing on Full Stack Java development.
+                    </li>
+                    <li class="timeline-bullet">
+                      Assisted in the research, technical analysis, and implementation of robust software architecture under mentor guidance.
+                    </li>
+                    <li class="timeline-bullet">
+                      Collaborated effectively with the mentorship team under structured guidance to submit quality project deliverables and technical reports on schedule.
+                    </li>
+                    <li class="timeline-bullet">
+                      Participated in application design, testing activities, and development deadlines.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education Column -->
+          <div class="timeline-column" id="education">
+            <h3 class="timeline-col-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-emerald);">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              <span>Education</span>
+            </h3>
+
+            <div class="timeline-track education-timeline-track">
+              <!-- Traveling dynamic line and glowing side point -->
+              <div class="timeline-progress-line" aria-hidden="true"></div>
+              <div class="timeline-traveling-point" aria-hidden="true"></div>
+              
+              <!-- Degree -->
+              <div class="timeline-item education-item active" data-edu-step="0">
+                <span class="timeline-marker" style="border-color: var(--accent-emerald);"></span>
+                <div class="timeline-content-card">
+                  <span class="timeline-period-badge" style="background: var(--accent-emerald-light); color: var(--accent-emerald);">July 2022 – June 2026</span>
+                  <h4 class="timeline-role">Bachelor of Technology in Information Technology</h4>
+                  <div class="timeline-org">Saveetha School of Engineering</div>
+                  <div class="grade-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    <span>CGPA: 8.0</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- HSC -->
+              <div class="timeline-item education-item" data-edu-step="1">
+                <span class="timeline-marker" style="border-color: var(--accent-emerald);"></span>
+                <div class="timeline-content-card">
+                  <span class="timeline-period-badge" style="background: var(--accent-emerald-light); color: var(--accent-emerald);">March 2021 – May 2022</span>
+                  <h4 class="timeline-role">Higher Secondary Certificate (HSC)</h4>
+                  <div class="timeline-org">Vailankanni Matric Higher Secondary School</div>
+                  <div class="grade-pill">
+                    <span>Percentage: 76%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SSLC -->
+              <div class="timeline-item education-item" data-edu-step="2">
+                <span class="timeline-marker" style="border-color: var(--accent-emerald);"></span>
+                <div class="timeline-content-card">
+                  <span class="timeline-period-badge" style="background: var(--accent-emerald-light); color: var(--accent-emerald);">March 2019 – May 2020</span>
+                  <h4 class="timeline-role">Secondary School Leaving Certificate (SSLC)</h4>
+                  <div class="timeline-org">Vailankanni Matric Higher Secondary School</div>
+                  <div class="grade-pill">
+                    <span>Percentage: 97%</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CERTIFICATIONS SECTION
+         ====================================================================== -->
+    <section class="section" id="certifications" style="background-color: var(--bg-secondary);">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-label-chip">
+            <span>06 // CREDENTIALS & CERTIFICATIONS</span>
+          </div>
+          <h2 class="section-title">VERIFIED QUALIFICATIONS</h2>
+        </div>
+
+        <div class="cert-single-wrap">
+          
+          <!-- Oracle Certified Specialist (Featured) -->
+          <div class="cert-card cert-featured">
+            <div class="cert-card-header">
+              <div class="cert-badge-ribbon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="7"></circle>
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                </svg>
+                <span>DATABASE SPECIALIST CERTIFICATION</span>
+              </div>
+              <h3 class="cert-title">Oracle Database SQL Certified Specialist</h3>
+              <p class="cert-issuer">Oracle Corporation • Issued to Nithish G • July 16, 2025</p>
+            </div>
+
+            <!-- Certificate Visual Preview -->
+            <a href="assets/certificates/Oracle.pdf" target="_blank" rel="noopener noreferrer" class="cert-preview-frame" title="Click to view full certificate PDF">
+              <img src="assets/oracle_cert_preview.png" alt="Oracle Database SQL Certified Specialist Certificate - Nithish G" class="cert-preview-img" loading="lazy">
+            </a>
+            
+            <div class="cert-footer-row">
+              <div class="cert-score-display">
+                <span class="score-num">82%</span>
+                <span class="score-label">Official Exam Score</span>
+              </div>
+
+              <a href="assets/certificates/Oracle.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary cert-view-btn">
+                <span>View Certificate</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CONTACT SECTION & FOOTER
+         ====================================================================== -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        
+        <div class="contact-card-wrap">
+          <div class="contact-bg-glow"></div>
+          
+          <div class="contact-content">
+            <div class="section-label-chip" style="margin-bottom: 1.5rem;">
+              <span>07 // LET'S TALK</span>
+            </div>
+
+            <h2 class="contact-oversized-heading">
+              LET'S BUILD SOMETHING MEANINGFUL.
+            </h2>
+
+            <p class="contact-subtitle">
+              Whether you are looking for a dedicated Software Engineer, a Java Full-Stack developer, or an agile team player for your next high-impact project — my inbox is open.
+            </p>
+
+            <!-- Working Direct Contact Links -->
+            <div class="contact-methods-grid">
+              
+              <!-- Direct Mailto -->
+              <a href="mailto:nithishganesh1710@gmail.com?subject=Software%20Engineering%20Opportunity&body=Hello%20Nithish," class="contact-pill-action contact-pill-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>Send Email Directly</span>
+              </a>
+
+              <!-- Copy Email to Clipboard -->
+              <button id="copyEmailBtn" class="contact-pill-action" type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Copy: nithishganesh1710@gmail.com</span>
+              </button>
+
+              <!-- LinkedIn -->
+              <a href="https://linkedin.com/in/nithishganesan1710" target="_blank" rel="noopener noreferrer" class="contact-pill-action">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                <span>LinkedIn Profile ↗</span>
+              </a>
+
+              <!-- GitHub -->
+              <a href="https://github.com/nithishganesan17" target="_blank" rel="noopener noreferrer" class="contact-pill-action">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                <span>GitHub Profile ↗</span>
+              </a>
+
+            </div>
+
+            <!-- Footer Strip -->
+            <footer class="site-footer">
+              <div class="footer-credits">
+                © 2026 NITHISH GANESAN • SOFTWARE ENGINEER • KRISHNAGIRI, INDIA
+              </div>
+              <div class="footer-nav">
+                <a href="#hero">Back to Top ↑</a>
+                <a href="resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+                <a href="https://github.com/nithishganesan17" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://linkedin.com/in/nithishganesan1710" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              </div>
+            </footer>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Interaction Scripts -->
+  <script src="js/main.js" defer></script>
+</body>
+</html>
