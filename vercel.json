@@ -1,7 +1,11 @@
 {
+<<<<<<< HEAD
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+=======
+  "version": 2,
+>>>>>>> fa666d3fd4e5a7dbf6ed1775fa6252f1c79395ee
   "cleanUrls": true,
   "headers": [
     {
